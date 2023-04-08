@@ -42,10 +42,7 @@
       // Set the background color of the body to a random color
       document.body.style.backgroundColor = getRandomColor();
 
-      // Redirect desktop users
-      if (window.innerWidth > 768) {
-        window.location.href = "https://nwinj.github.io/random-bible-quates/";
-      }
+      // Redirect desk
 
       fetch('https://labs.bible.org/api/?passage=random')
         .then(response => response.text())
