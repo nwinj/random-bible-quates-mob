@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Bible Quote</title>
+    <style>
+        body{
+            background-color: #c9b08c;
+        }
+        #quote{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+            font-style: bold;
+            position: absolute;
+            color: aliceblue;
+            background-color: black;
+            border-radius: 15px;
+            font-size: 60px;
+            margin-top: 790px;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding:5px ;
+
+        }
+
+      
+    </style>
+  </head>
+  <body>
+
+    <p id="quote"></p>
+    <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      // Set the background color of the body to a random color
+      document.body.style.backgroundColor = getRandomColor();
+
+      // Redirect desktop users
+      if (window.innerWidth > 768) {
+        window.location.href = "https://nwinj.github.io/random-bible-quates/";
+      }
+
+      fetch('https://labs.bible.org/api/?passage=random')
+        .then(response => response.text())
+        .then(data => {
+          const quote = data.replace(/<(?:.|\n)*?>/gm, '');
+          document.getElementById('quote').innerHTML = quote;
+        })
+        .catch(error => console.error(error));
+    </script>
+  </body>
+</html>
